@@ -1,39 +1,39 @@
 {
   "name": "selenium-test-player",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "dist/index.js",
   "dependencies": {
-    "selenium-webdriver": "^4.0.0-alpha.1",
-    "xml2js": "^0.4.19",
-    "jsdom":"^11.6.2",
+    "@types/commander": "^2.12.2",
     "@types/jsdom": "^11.0.4",
+    "@types/lodash.flatten": "^4.4.3",
+    "@types/lodash.mapvalues": "^4.6.3",
     "@types/node": "^9.4.7",
     "@types/selenium-webdriver": "^3.0.8",
     "@types/xml2js": "^0.4.2",
-    "typescript": "^2.7.2",
     "commander": "^2.15.0",
-    "@types/commander": "^2.12.2",
-    "lodash.mapvalues": "^4.6.0",
-    "@types/lodash.mapvalues": "^4.6.3",
+    "jsdom": "^11.6.2",
     "lodash.flatten": "^4.4.0",
-    "@types/lodash.flatten": "^4.4.3"
+    "lodash.mapvalues": "^4.6.0",
+    "selenium-webdriver": "^4.0.0-alpha.1",
+    "typescript": "^2.7.2",
+    "xml2js": "^0.4.19"
   },
   "files": [
     "src",
     "dist"
   ],
   "devDependencies": {
-    "jest":"^22.4.2",
-    "ts-jest":"^22.4.1",
-    "@types/jest":"^22.2.0",
-    "selenium-test-player-report-html":"0.0.0"
+    "@types/jest": "^22.2.0",
+    "jest": "^22.4.2",
+    "selenium-test-player-report-html": "^0.0.1",
+    "ts-jest": "^22.4.1"
   },
   "scripts": {
-    "prepare":"tsc --pretty",
-    "test":"jest"
+    "prepare": "tsc --pretty",
+    "test": "jest"
   },
-  "bin":{
-    "runTest":"./dist/cli.js"
+  "bin": {
+    "runTest": "./dist/cli.js"
   },
   "jest": {
     "transform": {
