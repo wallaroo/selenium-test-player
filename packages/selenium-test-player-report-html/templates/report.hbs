@@ -1,0 +1,71 @@
+<html>
+    <header>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <title>{{title}}</title>
+    </header>
+    <body>
+        <div class="container" id="testcases">
+            {{#each results}}
+                <div class="row">
+                    <div class="card col-md-12">
+                        <div class="card-header {{#if error}}bg-danger{{else}}bg-success{{/if}} ">
+                            <button class="btn btn-link text-white" data-toggle="collapse" href="#testCase{{@index}}" aria-expanded="false" aria-controls="collapseExample">
+                                <span>{{testCase.name}}</span> | <span>{{result}}</span>
+                            </button>
+                        </div>
+                        <div class="collapse" id="testCase{{@index}}" data-parent="#testcases">
+                            <div class="card-body">
+                                {{#each byDriver}}
+                                    <div class="card">
+                                        <div class="card-header {{#if error}}bg-danger{{else}}bg-success{{/if}}">
+                                            <button class="btn btn-link text-white col-md-12" data-toggle="collapse" href="#testExecution-{{@../index}}-{{@key}}" aria-expanded="false" aria-controls="collapseExample">
+                                                <div class="d-flex">
+                                                    <div class="p-2"><i class="fab fa-{{@key}}" style="font-size: 2em"></i></div>
+                                                    <div class="p-2">{{result}}</div>
+                                                    <div class="p-2 ml-auto">{{duration elapsedTime}}</div>
+                                                </div>
+                                            </button>
+                                        </div>
+                                        <div class="collapse" id="testExecution-{{@../index}}-{{@key}}" data-parent="#testCase{{@../index}}">
+                                            <div class="card-body">
+                                                {{#each commandResults}}
+                                                    {{#if resultObject}}
+                                                        <a data-toggle="collapse" href="#cmdExecution-{{@../../index}}-{{@../key}}-{{@index}}" aria-expanded="false" aria-controls="collapseExample">
+                                                    {{/if}}
+                                                        <div class="alert {{#if error}}alert-danger{{else}}alert-success{{/if}}" role="alert">
+                                                            <div class="d-flex">
+                                                                <div class="p-2">{{command.type}}("{{command.target}}", "{{command.value}}")</div>
+                                                                <div class="p-2">{{result}}</div>
+                                                                <div class="p-2 ml-auto">{{duration elapsedTime}}</div>
+                                                            </div>
+                                                            <div class="d-flex">{{error}}</div>
+                                                        </div>
+                                                    {{#if resultObject}}
+                                                    </a>
+                                                    <div class="collapse" id="cmdExecution-{{@../../index}}-{{@../key}}-{{@index}}">
+                                                        <img src="data:image/png;base64,{{resultObject}}" class="img-fluid"/>
+                                                    </div>
+                                                    {{/if}}
+                                                {{/each}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/brands.js" integrity="sha384-sCI3dTBIJuqT6AwL++zH7qL8ZdKaHpxU43dDt9SyOzimtQ9eyRhkG3B7KMl6AO19" crossorigin="anonymous"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>

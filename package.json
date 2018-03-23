@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "lerna": "^2.9.0"
+  },
+  "scripts": {
+    "lerna": "lerna",
+    "lerna:clean":"lerna clean --yes",
+    "lerna:bootstrap":"lerna bootstrap",
+    "prepublish": "lerna bootstrap",
+    "publish": "lerna publish --conventional-commits"
+  }
+}

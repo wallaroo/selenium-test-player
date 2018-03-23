@@ -1,0 +1,19 @@
+{
+  "name":"selenium-test-player-report-html",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "dependencies": {
+    "handlebars": "^4.0.11",
+    "@types/node": "^9.6.0",
+    "@types/handlebars": "^4.0.36",
+    "selenium-test-player": "0.0.0",
+    "moment": "^2.21.0",
+    "@types/moment": "^2.13.0"
+  },
+  "devDependencies": {
+    "typescript": "^2.7.2"
+  },
+  "scripts": {
+    "prepare":"tsc --pretty"
+  }
+}
