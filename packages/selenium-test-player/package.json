@@ -3,7 +3,6 @@
   "version": "0.0.2",
   "main": "dist/index.js",
   "dependencies": {
-    "@types/commander": "^2.12.2",
     "@types/jsdom": "^11.0.4",
     "@types/lodash.flatten": "^4.4.3",
     "@types/lodash.mapvalues": "^4.6.3",
