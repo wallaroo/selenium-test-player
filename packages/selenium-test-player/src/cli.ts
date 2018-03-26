@@ -1,3 +1,4 @@
+#!/usr/bin/env 
 import * as commander from "commander"
 import {readFile, stat} from "fs";
 import {basename,extname} from "path";
