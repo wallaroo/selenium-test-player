@@ -2,11 +2,12 @@
   "dependencies": {
     "lerna": "^2.9.0"
   },
+  "private":true,
   "scripts": {
     "lerna": "lerna",
     "lerna:clean":"lerna clean --yes",
     "lerna:bootstrap":"lerna bootstrap",
-    "prepublish": "lerna bootstrap",
-    "publish": "lerna publish --conventional-commits"
+    "prelerna:publish": "lerna bootstrap",
+    "lerna:publish": "lerna publish --conventional-commits --yes"
   }
 }
