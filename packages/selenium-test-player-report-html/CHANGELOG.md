@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/wallaroo/selenium-test-player/compare/v0.1.4...v0.2.0) (2018-04-03)
+
+
+
+
+**Note:** Version bump only for package selenium-test-player-report-html
+
 <a name="0.1.4"></a>
 ## [0.1.4](https://github.com/wallaroo/selenium-test-player/compare/v0.1.3...v0.1.4) (2018-04-03)
 
