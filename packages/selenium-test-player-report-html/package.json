@@ -1,13 +1,13 @@
 {
   "name": "selenium-test-player-report-html",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "dist/index.js",
   "dependencies": {
     "@types/handlebars": "^4.0.36",
     "@types/node": "^9.6.0",
     "handlebars": "^4.0.11",
     "moment": "^2.21.0",
-    "selenium-test-player": "^0.1.1"
+    "selenium-test-player": "^0.1.2"
   },
   "devDependencies": {
     "typescript": "^2.7.2"
