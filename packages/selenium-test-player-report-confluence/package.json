@@ -1,6 +1,6 @@
 {
   "name": "selenium-test-player-report-confluence",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": true,
   "main": "dist/index.js",
   "dependencies": {
@@ -8,7 +8,7 @@
     "@types/node": "^9.6.0",
     "handlebars": "^4.0.11",
     "moment": "^2.21.0",
-    "selenium-test-player": "^0.1.3"
+    "selenium-test-player": "^0.1.4"
   },
   "devDependencies": {
     "typescript": "^2.7.2"
