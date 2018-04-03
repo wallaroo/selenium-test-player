@@ -1,6 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 node_modules
 packages/*/dist
+packages/*/node_modules
 .idea
 packages/selenium-test-player/report
 packages/selenium-test-player/test
