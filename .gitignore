@@ -6,3 +6,4 @@ packages/*/node_modules
 packages/selenium-test-player/report
 packages/selenium-test-player/test
 /report
+*.sh

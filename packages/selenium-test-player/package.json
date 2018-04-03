@@ -25,6 +25,7 @@
     "@types/jest": "^22.2.0",
     "jest": "^22.4.2",
     "selenium-test-player-report-html": "^0.1.4",
+    "selenium-test-player-report-confluence": "^0.1.4",
     "ts-jest": "^22.4.1"
   },
   "scripts": {

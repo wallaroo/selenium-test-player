@@ -1,16 +1,17 @@
-{{#each results}}
+{{~#each results~}}
     {expand:title={{testCase.name}}: {{result}} }
+    {{~#each byDriver}}
 
-    {{#each byDriver}}
-        h3. {{@key}} {{#if error}}{status:color=red|title=FAIL}{{else}}{status:color=green|title=SUCCESS}{{/if}} {{duration elapsedTime}}
-        {{#each commandResults}}
-                # {{#if error}}{status:color=red|title=FAIL}{{else}}{status:color=green|title=SUCCESS}{{/if}} {{duration elapsedTime}}//
-                        {{command.type}}("{{command.target}}", "{{command.value}}")\\
-                        {{error}}
+h3. {{@key}} {{#if error}}{status:color=red|title=FAIL}{{else}}{status:color=green|title=SUCCESS}{{/if}} {{duration elapsedTime}}
+        {{~#each commandResults}}
+
+# {{#if error}}{status:color=red|title=FAIL}{{else}}{status:color=green|title=SUCCESS}{{/if}} {{duration elapsedTime}}\\
+{{command.type}}("{{command.target}}", "{{command.value}}")\\
+    {{~error~}}
             {{#if resultObject}}
-                # <img src="data:image/png;base64,{{resultObject}}" class="img-fluid"/>
+                \\ !{{resultObject}}!
             {{/if}}
         {{/each}}
     {{/each}}
     {expand}
-{{/each}}
+{{~/each}}

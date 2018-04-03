@@ -1,7 +1,6 @@
 {
   "name": "selenium-test-player-report-confluence",
   "version": "0.1.4",
-  "private": true,
   "main": "dist/index.js",
   "dependencies": {
     "@types/handlebars": "^4.0.36",

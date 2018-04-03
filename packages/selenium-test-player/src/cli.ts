@@ -109,13 +109,16 @@ async function parseTestCases(args: string[]): Promise<TestCase[]> {
         console.error(`ERROR ${e.message}`);
       }
     }
-    const prepareReport = (await import(`selenium-test-player-report-${config.report.preset}`)).default;
-    await prepareReport(config.report, results);
+    for (const reportConfig of config.report){
+      const prepareReport = (await import(`selenium-test-player-report-${reportConfig.preset}`)).default;
+      await prepareReport(reportConfig, results);
+    }
     if (isFailed){
       process.exit(1);
     }
   } catch (e) {
     console.error(`ERROR ${e.message}`);
+    console.error(`STACK\n${e.stack}`);
     process.exit(1);
   }
 })();

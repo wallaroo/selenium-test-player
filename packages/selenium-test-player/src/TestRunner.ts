@@ -67,7 +67,7 @@ export type Config = {
   browsers: Browser[],
   winSizes: string[],
   hosts: { [hostName: string]: string },
-  report: ReportConfig
+  report: ReportConfig[]
 }
 export type ReportConfig = {
   "preset": string,
