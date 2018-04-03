@@ -25,5 +25,5 @@ async function writeReport(path:string, content: string){
 
 export default async function prepareReport(config:ReportConfig, results:XTextCaseResult[]) {
   const template = await getTemplate("report");
-  writeReport(config.outDir, template({title:"test", results}))
+  return writeReport(config.outDir, template({title:"test", results}))
 }
