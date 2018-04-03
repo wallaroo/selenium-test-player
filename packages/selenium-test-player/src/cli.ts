@@ -5,7 +5,7 @@ import { basename, extname, join } from "path";
 import { promisify } from "util";
 import { parseString } from "xml2js"
 import { JSDOM } from "jsdom"
-import TestRubber, { Command, default as TestRunner, TestCase, XTextCaseResult } from "./TestRunner"
+import TestRubber, { Command, default as TestRunner, Result, TestCase, XTextCaseResult } from "./TestRunner"
 
 const flatten = require("lodash.flatten");
 const fileRead = promisify(readFile);
@@ -94,18 +94,26 @@ async function parseTestCases(args: string[]): Promise<TestCase[]> {
   try {
     const config = JSON.parse(await fileRead(commander.config, {"encoding": "utf8"}));
     const results: XTextCaseResult[] = [];
+    let isFailed = false;
     const testCases: TestCase[] = await parseTestCases(commander.args);
     for (const testCase of testCases) {
       try {
         console.log("start testcase",testCase.name);
         const runner = new TestRunner(testCase, config);
-        results.push(await runner.run());
+        const res = await runner.run();
+        results.push(res);
+        if (!isFailed && res.result === Result.FAIL){
+          isFailed = true;
+        }
       } catch (e) {
         console.error(`ERROR ${e.message}`);
       }
     }
     const prepareReport = (await import(`selenium-test-player-report-${config.report.preset}`)).default;
     await prepareReport(config.report, results);
+    if (isFailed){
+      process.exit(1);
+    }
   } catch (e) {
     console.error(`ERROR ${e.message}`);
     process.exit(1);
