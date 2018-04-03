@@ -4,3 +4,4 @@ packages/*/dist
 .idea
 packages/selenium-test-player/report
 packages/selenium-test-player/test
+/report
