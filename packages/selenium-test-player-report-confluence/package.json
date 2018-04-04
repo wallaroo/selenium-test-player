@@ -1,19 +1,19 @@
 {
   "name": "selenium-test-player-report-confluence",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "main": "dist/index.js",
   "dependencies": {
+    "@types/form-data": "^2.2.1",
     "@types/handlebars": "^4.0.36",
     "@types/node": "^9.6.0",
     "@types/node-fetch": "^1.6.8",
     "btoa": "^1.2.1",
     "commander": "^2.15.1",
+    "form-data": "^2.3.2",
     "handlebars": "^4.0.11",
     "moment": "^2.21.0",
     "node-fetch": "^2.1.2",
-    "form-data":"^2.3.2",
-    "@types/form-data": "^2.2.1",
-    "selenium-test-player": "^0.3.0"
+    "selenium-test-player": "^0.4.0"
   },
   "devDependencies": {
     "typescript": "^2.7.2"
