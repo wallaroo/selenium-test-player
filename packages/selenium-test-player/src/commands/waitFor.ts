@@ -11,3 +11,17 @@ export class waitForVisible extends CommandExecutor {
     return result.success();
   }
 }
+
+export class waitForText extends CommandExecutor {
+  async exec(cmd: Command, result:CommandResult): Promise<CommandResult> {
+    let tout = 30000;
+    let element = await this.driver.wait(until.elementLocated(this.by(cmd.target)), tout);
+    let text = await element.getText();
+    if(text === cmd.value){
+      return result.success();
+    }else{
+      throw new Error(`element ${cmd.target} contains text '${text}' instead '${cmd.value}'`);
+    }
+
+  }
+}

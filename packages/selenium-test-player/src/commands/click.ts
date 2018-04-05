@@ -8,3 +8,5 @@ export class click extends CommandExecutor {
     return result.success();
   }
 }
+
+export const clickAndWait = click;

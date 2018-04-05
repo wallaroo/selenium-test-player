@@ -1,5 +1,5 @@
 export * from "./open"
-export * from "./waitForVisible"
+export * from "./waitFor"
 export * from "./type"
 export * from "./click"
 export * from "./captureEntirePageScreenshot"
