@@ -1,4 +1,4 @@
-import { ReportConfig, XTextCaseResult, TestCaseResult } from "selenium-test-player/dist"
+import { ReportConfig, XTextCaseResult, TestCaseResult, Result } from "selenium-test-player/dist"
 import { compile, registerHelper, SafeString } from "handlebars";
 import { readFile, writeFile, mkdir } from "fs";
 import { promisify } from "util";
@@ -36,7 +36,11 @@ async function writeReport(path: string, content: string) {
 export default async function prepareReport(config: ReportConfig, results: XTextCaseResult[]) {
   const template = await getTemplate("report");
   let snapshotCount = 0;
+  let mainresult: Result = Result.SUCCESS;
   for (const result of results) {
+    if (result.result === Result.FAIL){
+      mainresult = Result.FAIL
+    }
     for (const driver of Object.keys(result.byDriver)) {
       const byDriver = (result.byDriver as any)[ driver ] as TestCaseResult;
       for (const cmdResult of byDriver.commandResults) {
@@ -48,5 +52,5 @@ export default async function prepareReport(config: ReportConfig, results: XText
       }
     }
   }
-  return writeReport(config.outDir, template({title: "test", results}))
+  return writeReport(config.outDir, template({title: "test", results, resultOK:(mainresult === Result.SUCCESS)}))
 }

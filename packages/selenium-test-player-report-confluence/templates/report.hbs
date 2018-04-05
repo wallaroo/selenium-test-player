@@ -1,15 +1,19 @@
-{{~#each results~}}
-    {expand:title={{testCase.name}}: {{result}} }
+h1. Test Report
+h2. Status: {{#if resultOK}}{status:color=green|title=SUCCESS}{{else}}{status:color=red|title=FAIL}{{/if}}
+{{~#each results}}
+
+h3. {{testCase.name}} {{#if error}}{status:color=red|title=FAIL}{{else}}{status:color=green|title=SUCCESS}{{/if}}
+    {expand}
     {{~#each byDriver}}
 
-h3. {{@key}} {{#if error}}{status:color=red|title=FAIL}{{else}}{status:color=green|title=SUCCESS}{{/if}} {{duration elapsedTime}}
+h4. {{@key}} {{#if error}}{status:color=red|title=FAIL}{{else}}{status:color=green|title=SUCCESS}{{/if}} {{duration elapsedTime}}
         {{~#each commandResults}}
 
 # {{#if error}}{status:color=red|title=FAIL}{{else}}{status:color=green|title=SUCCESS}{{/if}} {{duration elapsedTime}}\\
 {{command.type}}("{{command.target}}", "{{command.value}}")\\
     {{~error~}}
             {{#if resultObject}}
-                \\ !{{resultObject}}!
+                !{{~resultObject}}!
             {{/if}}
         {{/each}}
     {{/each}}
