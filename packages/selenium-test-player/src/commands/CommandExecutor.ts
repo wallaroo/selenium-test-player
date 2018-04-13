@@ -1,6 +1,7 @@
-import {By, WebDriver, WebElement, WebElementPromise} from "selenium-webdriver";
-import {Command, Config, Result} from "../TestRunner";
-const mapValues:Function = require("lodash.mapvalues");
+import { By, WebDriver, WebElement } from "selenium-webdriver";
+import { Browser, Command, Config, Result } from "../TestRunner";
+
+const mapValues: Function = require("lodash.mapvalues");
 
 export class CommandResult<T = any> {
   resultObject?: T;
@@ -10,15 +11,15 @@ export class CommandResult<T = any> {
   elapsedTime: number;
   startTime: number;
 
-  constructor(command: Command,result: Result = Result.SUCCESS, resultObject?: T) {
+  constructor(command: Command, result: Result = Result.SUCCESS, resultObject?: T) {
     this.command = command;
     this.result = result;
     this.resultObject = resultObject;
     this.elapsedTime = 0;
-    this.startTime= Date.now();
+    this.startTime = Date.now();
   }
 
-  success(resultObject?: T):this{
+  success(resultObject?: T): this {
     this.result = Result.SUCCESS;
     this.resultObject = resultObject;
     this.elapsedTime = Date.now() - this.startTime;
@@ -26,7 +27,7 @@ export class CommandResult<T = any> {
   }
 
 
-  fail(e:Error,resultObject?: T):this{
+  fail(e: Error, resultObject?: T): this {
     this.result = Result.FAIL;
     this.error = e;
     this.resultObject = resultObject;
@@ -34,22 +35,22 @@ export class CommandResult<T = any> {
     return this;
   }
 
-  private serializeObject(obj: any){
-    if (!obj){
+  private serializeObject(obj: any) {
+    if (!obj) {
       return undefined;
-    }else if (typeof obj === "string" || typeof obj === "number"){
+    } else if (typeof obj === "string" || typeof obj === "number") {
       return obj;
-    }else if (typeof obj === "object"){
-      if (typeof obj.toJSON === "function"){
+    } else if (typeof obj === "object") {
+      if (typeof obj.toJSON === "function") {
         return obj.toJSON();
-      }else{
-        return mapValues(obj, (o:any) => this.serializeObject(o))
+      } else {
+        return mapValues(obj, (o: any) => this.serializeObject(o))
       }
     }
     return undefined;
   }
 
-  toJSON():object{
+  toJSON(): object {
     return {
       result: this.result,
       command: this.command,
@@ -62,34 +63,36 @@ export class CommandResult<T = any> {
 }
 
 export interface ICommandExecutor {
-  exec(cmd: Command,result:CommandResult): Promise<CommandResult>;
+  exec(cmd: Command, result: CommandResult): Promise<CommandResult>;
 }
 
 export default abstract class CommandExecutor implements ICommandExecutor {
   protected driver: WebDriver;
   protected config: Config;
+  protected browser: Browser;
 
-  constructor(driver: WebDriver, config: Config) {
+  constructor({driver, config, browser}: { driver: WebDriver, config: Config, browser: Browser }) {
     this.driver = driver;
     this.config = config;
+    this.browser = browser;
   }
 
   protected by(target: string) {
     const match = target.match(/(id|name|css)=(.*)/);
     if (match) {
-      return (By as any)[match[1]](match[2]);
+      return (By as any)[ match[ 1 ] ](match[ 2 ]);
     } else {
       return By.xpath(target);
     }
   }
 
-  protected async setWinSize(size:string):Promise<void>{
+  protected async setWinSize(size: string): Promise<void> {
     let sizes = size.split('x');
-    return (this.driver.manage().window() as any).setRect({width:parseInt(sizes[0]), height:parseInt(sizes[1])});
+    return (this.driver.manage().window() as any).setRect({width: parseInt(sizes[ 0 ]), height: parseInt(sizes[ 1 ])});
   }
 
-  protected async forEachWinSize(fn:(size:string)=>any){
-    for(const size of this.config.winSizes){
+  protected async forEachWinSize(fn: (size: string) => any) {
+    for (const size of this.config.winSizes) {
       await fn(size)
     }
   }
@@ -98,5 +101,5 @@ export default abstract class CommandExecutor implements ICommandExecutor {
     return this.driver.findElement(this.by(target));
   }
 
-  abstract async exec(cmd: Command, result:CommandResult): Promise<CommandResult>;
+  abstract async exec(cmd: Command, result: CommandResult): Promise<CommandResult>;
 }

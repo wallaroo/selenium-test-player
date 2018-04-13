@@ -6,13 +6,16 @@ export class open extends CommandExecutor {
   protected resolveHosts(target:string):string{
     let url = new URL(target);
 
-    if (this.config.hosts[url.hostname]){
-      url.hostname = this.config.hosts[url.hostname];
-      console.log(`url resolved in ${url.toString()}`);
-      return url.toString();
-    }else{
-      return target;
+    for(const host of this.config.hostMappings){
+      if (host.browsers.includes(this.browser) && host.hosts[url.hostname]){
+        url.hostname = host.hosts[url.hostname];
+        console.log(`url resolved in ${url.toString()}`);
+        target = url.toString();
+      }
     }
+
+    return target;
+
   }
 
   async exec(cmd:Command, result:CommandResult): Promise<CommandResult> {

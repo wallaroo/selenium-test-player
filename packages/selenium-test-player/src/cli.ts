@@ -110,8 +110,10 @@ async function parseTestCases(args: string[]): Promise<TestCase[]> {
       }
     }
     for (const reportConfig of config.report){
+      console.log(`preparing report by ${reportConfig.preset}`);
       const prepareReport = (await import(`selenium-test-player-report-${reportConfig.preset}`)).default;
       await prepareReport(reportConfig, results);
+      console.log(`report prepared by ${reportConfig.preset}`);
     }
     if (isFailed){
       process.exit(1);
