@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/wallaroo/selenium-test-player/compare/v0.5.2...v0.6.0) (2018-04-13)
+
+
+### Features
+
+* BREAKING CHANGE host mapping config is changed ([a2cf92c](https://github.com/wallaroo/selenium-test-player/commit/a2cf92c))
+
+
+
+
 <a name="0.5.2"></a>
 ## [0.5.2](https://github.com/wallaroo/selenium-test-player/compare/v0.5.1...v0.5.2) (2018-04-06)
 
