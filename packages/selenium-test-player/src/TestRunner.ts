@@ -143,7 +143,15 @@ export default class TestRunner {
         throw new Error(`no executor for command type '${cmd.type}'`);
       }
       if (result.result !== Result.SUCCESS){
-        result = new captureEntirePageScreenshot({driver, config:this.config, browser});
+        try {
+          let cmdSnap = new captureEntirePageScreenshot({driver, config: this.config, browser});
+          let result = new CommandResult({type: "captureEntirePageScreenshot", target: "", value: ""});
+          result = await cmdEx.exec(cmd, result);
+          cmdResults.push(result);
+        } catch (e) {
+          console.error(e.message);
+          console.error(e.stack);
+        }
         break;
       }
     }
