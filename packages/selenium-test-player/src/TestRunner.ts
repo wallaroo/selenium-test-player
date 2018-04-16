@@ -146,7 +146,7 @@ export default class TestRunner {
         try {
           let cmdSnap = new captureEntirePageScreenshot({driver, config: this.config, browser});
           let result = new CommandResult({type: "captureEntirePageScreenshot", target: "", value: ""});
-          result = await cmdEx.exec(cmd, result);
+          result = await cmdSnap.exec(cmd, result);
           cmdResults.push(result);
         } catch (e) {
           console.error(e.message);
