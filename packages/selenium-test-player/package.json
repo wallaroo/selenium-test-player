@@ -14,7 +14,6 @@
     "lodash.flatten": "^4.4.0",
     "lodash.mapvalues": "^4.6.0",
     "selenium-webdriver": "^4.0.0-alpha.1",
-    "typescript": "^2.7.2",
     "xml2js": "^0.4.19"
   },
   "files": [
@@ -26,7 +25,8 @@
     "jest": "^22.4.2",
     "selenium-test-player-report-confluence": "^0.6.0",
     "selenium-test-player-report-html": "^0.6.0",
-    "ts-jest": "^22.4.1"
+    "ts-jest": "^22.4.1",
+    "typescript": "^2.8.1"
   },
   "scripts": {
     "prepare": "tsc --pretty",

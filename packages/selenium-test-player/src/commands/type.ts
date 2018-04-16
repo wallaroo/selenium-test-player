@@ -8,3 +8,11 @@ export class type extends CommandExecutor {
     return result.success();
   }
 }
+
+export class keyPress extends CommandExecutor {
+  async exec(cmd: Command, result:CommandResult): Promise<CommandResult> {
+    let element = await this.resolveElement(cmd.target);
+    await element.sendKeys(cmd.value);
+    return result.success();
+  }
+}
