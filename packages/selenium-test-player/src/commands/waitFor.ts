@@ -9,7 +9,8 @@ export class waitForVisible extends CommandExecutor {
     let tout = parseInt(cmd.value);
     if (isNaN(tout))
       tout = DEFAULT_TIMEOUT;
-    await this.driver.wait(until.elementIsVisible(this.by(cmd.target)), tout);
+    let element = await this.driver.wait(until.elementLocated(this.by(cmd.target)), tout);
+    await this.driver.wait(until.elementIsVisible(element), tout);
     return result.success();
   }
 }

@@ -1,6 +1,7 @@
 import { WebDriver } from "selenium-webdriver";
 import * as commandExecutors from "./commands";
 import CommandExecutor, { CommandResult } from "./commands/CommandExecutor";
+import { captureEntirePageScreenshot } from './commands';
 
 const {Builder, Capabilities} = require("selenium-webdriver")
 
@@ -136,10 +137,14 @@ export default class TestRunner {
           console.log(`[${browser}] ${cmd.type}(${cmd.target}, ${cmd.value}) -> ${result.result}`);
         } catch (e) {
           console.log(`[${browser}] ${cmd.type}(${cmd.target}, ${cmd.value}) -> FAIL`);
-          cmdResults.push(new CommandResult(cmd).fail(e));
+          cmdResults.push(result.fail(e));
         }
       } else {
         throw new Error(`no executor for command type '${cmd.type}'`);
+      }
+      if (result.result !== Result.SUCCESS){
+        result = new captureEntirePageScreenshot({driver, config:this.config, browser});
+        break;
       }
     }
     return new TestCaseResult(this.testCase, cmdResults, browser);
