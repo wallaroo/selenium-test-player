@@ -116,10 +116,14 @@ export default class TestRunner {
     for (let browser of this.config.browsers) {
       let driver = this.drivers[ browser ];
       if (driver) {
-        const session = await driver.getSession();
-        await driver.quit();
-        process.removeListener('SIGINT', this.close);
-        console.log(`${browser} Session Closed (${session.getId()})`);
+        try {
+          const session = await driver.getSession();
+          await driver.quit();
+          process.removeListener('SIGINT', this.close);
+          console.log(`${browser} Session Closed (${session.getId()})`);
+        }catch (e) {
+          console.error(`ERROR closing ${browser} session: ${e.message}`)
+        }
       }
     }
   }
