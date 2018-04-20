@@ -1,6 +1,6 @@
 {
   "name": "selenium-test-player-report-confluence",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "main": "dist/index.js",
   "dependencies": {
     "@types/form-data": "^2.2.1",
@@ -13,7 +13,7 @@
     "handlebars": "^4.0.11",
     "moment": "^2.21.0",
     "node-fetch": "^2.1.2",
-    "selenium-test-player": "^0.7.1"
+    "selenium-test-player": "^0.8.0"
   },
   "devDependencies": {
     "typescript": "^2.8.1"
