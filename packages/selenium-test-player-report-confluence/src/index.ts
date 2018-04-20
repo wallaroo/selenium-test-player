@@ -13,6 +13,12 @@ registerHelper('duration', function (timestamp: number, options: any) {
   return new SafeString(`${moment.duration(timestamp).asSeconds()} seconds`);
 });
 
+registerHelper('wiki', function (text: string, options: any) {
+  text = text.replace("{", "&#123;");
+  text = text.replace("}", "&#125;");
+  return new SafeString(text);
+});
+
 async function getTemplate(templatename: string): Promise<Function> {
   return compile(await fileRead(join(__dirname, "..", "templates", `${templatename}.hbs`), {encoding: "utf8"}));
 }

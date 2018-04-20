@@ -10,7 +10,7 @@ h4. {{@key}} {{#if error}}{status:color=red|title=FAIL}{{else}}{status:color=gre
         {{~#each commandResults}}
 
 # {{#if error}}{status:color=red|title=FAIL}{{else}}{status:color=green|title=SUCCESS}{{/if}} {{duration elapsedTime}}\\
-{{command.type}}("{{command.target}}", "{{command.value}}")\\
+{{command.type}}("{{wiki command.target}}", "{{wiki command.value}}")\\
     {{~error~}}
             {{#if resultObject}}
                 !{{~resultObject}}!
