@@ -138,12 +138,15 @@ export default class TestRunner {
         } catch (e) {
           console.log(`[${browser}] ${cmd.type}(${cmd.target}, ${cmd.value}) -> FAIL`);
           cmdResults.push(result.fail(e));
+          console.error(e.message);
+          console.error(e.stack);
         }
       } else {
         throw new Error(`no executor for command type '${cmd.type}'`);
       }
       if (result.result !== Result.SUCCESS){
         try {
+          console.log("taking snapshot of error");
           let cmdSnap = new captureEntirePageScreenshot({driver, config: this.config, browser});
           let result = new CommandResult({type: "captureEntirePageScreenshot", target: "", value: ""});
           result = await cmdSnap.exec(cmd, result);

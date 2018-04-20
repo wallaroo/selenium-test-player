@@ -11,7 +11,7 @@
     "selenium-test-player": "^0.7.1"
   },
   "devDependencies": {
-    "typescript": "^2.8.1"
+    "typescript": "^2.8.3"
   },
   "scripts": {
     "prepare": "tsc --pretty"

@@ -101,5 +101,12 @@ export default abstract class CommandExecutor implements ICommandExecutor {
     return this.driver.findElement(this.by(target));
   }
 
+  protected substituteVariables(value: string): string {
+    value = value.replace("${BROWSER}", this.browser);
+    return value;
+  }
+
   abstract async exec(cmd: Command, result: CommandResult): Promise<CommandResult>;
+
+
 }

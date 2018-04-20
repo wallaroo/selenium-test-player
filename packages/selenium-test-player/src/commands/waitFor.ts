@@ -2,7 +2,7 @@ import CommandExecutor, {CommandResult} from "./CommandExecutor";
 import {until} from "selenium-webdriver";
 import {Command} from "../TestRunner";
 
-const DEFAULT_TIMEOUT = 180 * 1000;
+const DEFAULT_TIMEOUT = 90 * 1000;
 
 export class waitForVisible extends CommandExecutor {
   async exec(cmd: Command, result:CommandResult): Promise<CommandResult> {
@@ -36,7 +36,7 @@ export class waitForText extends CommandExecutor {
 
 export class pause extends CommandExecutor {
   async exec(cmd: Command, result:CommandResult): Promise<CommandResult> {
-    await this.driver.sleep(parseInt(cmd.value) || DEFAULT_TIMEOUT);
+    await this.driver.sleep(parseInt(cmd.target) || parseInt(cmd.value) || DEFAULT_TIMEOUT );
     return result.success();
   }
 }
