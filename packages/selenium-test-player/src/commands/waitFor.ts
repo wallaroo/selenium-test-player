@@ -29,7 +29,7 @@ export class waitForText extends CommandExecutor {
   async exec(cmd: Command, result:CommandResult): Promise<CommandResult> {
     let tout = DEFAULT_TIMEOUT;
     let element = await this.driver.wait(until.elementLocated(this.by(cmd.target)), tout);
-    await this.driver.wait(until.elementTextIs(element, cmd.value), tout);
+    await this.driver.wait(until.elementTextContains(element, cmd.value), tout);
     return result.success();
   }
 }

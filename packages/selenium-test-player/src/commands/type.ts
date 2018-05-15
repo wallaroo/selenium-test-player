@@ -5,7 +5,11 @@ import { WebDriver } from 'selenium-webdriver';
 export class type extends CommandExecutor {
   async exec(cmd: Command, result: CommandResult): Promise<CommandResult> {
     let element = await this.resolveElement(cmd.target);
-    await element.sendKeys(this.substituteVariables(cmd.value));
+    let value = this.substituteVariables(cmd.value);
+    for(const char of value){
+      await element.sendKeys(char);
+      await this.driver.sleep(200);
+    }
     return result.success();
   }
 }
@@ -13,7 +17,12 @@ export class type extends CommandExecutor {
 export class keyPress extends CommandExecutor {
   async exec(cmd: Command, result: CommandResult): Promise<CommandResult> {
     let element = await this.resolveElement(cmd.target);
-    await element.sendKeys(this.substituteVariables(cmd.value));
+    let value = this.substituteVariables(cmd.value);
+    for(const char of value){
+      await element.sendKeys(char);
+      await this.driver.sleep(200);
+    }
+
     return result.success();
   }
 }
