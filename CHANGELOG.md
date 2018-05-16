@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.8.5"></a>
+## [0.8.5](https://github.com/wallaroo/selenium-test-player/compare/v0.8.4...v0.8.5) (2018-05-16)
+
+
+### Bug Fixes
+
+* hoverAndClick ie11 workaround ([80bedad](https://github.com/wallaroo/selenium-test-player/commit/80bedad))
+
+
+
+
 <a name="0.8.4"></a>
 ## [0.8.4](https://github.com/wallaroo/selenium-test-player/compare/v0.8.3...v0.8.4) (2018-05-15)
 
