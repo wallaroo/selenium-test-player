@@ -2,6 +2,7 @@ import { WebDriver } from "selenium-webdriver";
 import * as commandExecutors from "./commands";
 import CommandExecutor, { CommandResult } from "./commands/CommandExecutor";
 import { captureEntirePageScreenshot } from './commands';
+import { Options } from 'selenium-webdriver/ie';
 
 const {Builder, Capabilities} = require("selenium-webdriver")
 
@@ -97,10 +98,17 @@ export default class TestRunner {
     process.on('SIGINT', this.close);
     for (let browser of this.config.browsers) {
       try {
-        let driver = this.drivers[ browser ] = await new Builder()
+        let cap = Capabilities[ browser ]();
+        let builder = new Builder()
           .usingServer(this.config.hubUrl)
-          .withCapabilities(Capabilities[ browser ]())
-          .build();
+          .withCapabilities(cap);
+        if(browser === "ie"){
+          let opt = new Options();
+          opt.requireWindowFocus(true);
+          opt.enablePersistentHover(false);
+          builder = builder.setIeOptions(opt);
+        }
+        let driver = this.drivers[ browser ] = await builder.build();
         let defSize = this.config.winSizes[ 0 ].split('x');
         console.log(`Set default win size ${defSize[ 0 ]} ${defSize[ 1 ]}`);
         await driver.manage().window().setRect({width: parseInt(defSize[ 0 ]), height: parseInt(defSize[ 1 ])});
